@@ -1,0 +1,70 @@
+{% load static %}
+<html>
+<head>
+<title>Modification d'un utilisateur</title>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+
+ </head>
+<body>
+{% include "navBar.html" %}
+<h1><center>Modifier un utilisateur</center></h1>
+<center>
+<form action="update_user_action/{{ u.id }}" method="post">
+{% csrf_token %}
+<div class="col-sm-4 col-md-6 col-lg-4">
+<label>Prénom</label>
+<input  name="prenom" value="{{ u.first_name }}" 
+class="form-control">
+</div>
+<div class="col-sm-4 col-md-6 col-lg-4">
+    <label>Nom</label>
+    <input  name="nom" value="{{ u.last_name }}" 
+    class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-6 col-lg-4">
+        <label>Email</label>
+        <input  name="mail" value="{{ u.email }}" 
+        class="form-control">
+        </div>    
+        <div class="col-sm-4 col-md-6 col-lg-4">
+            <label>Login</label>
+            <input  name="login" value="{{ u.username }}" 
+            class="form-control">
+            </div>  
+            <div class="col-sm-4 col-md-6 col-lg-4">
+                <label>Email</label>
+                <input  name="mail" value="{{ u.email }}" class="form-control">
+                </div>   
+            <div class="col-sm-4 col-md-6 col-lg-4">
+                <label>Admin</label>
+                <select name="admin" class="form-control form-control-lg">
+                    <option selected value="{{ u.is_staff }}">{{ u.is_staff }}</option>
+                    <option value="True" >True</option>
+                    <option value="False" >False</option>
+                </select>
+                </div> 
+                <div class="col-sm-4 col-md-6 col-lg-4">
+                    <label>Password</label>
+                    <input type="password" name="mot2pass" id="mot2pass"
+    class="form-control">
+                    </div> 
+                       
+                    <div class="col-sm-4 col-md-6 col-lg-4">
+                        <label>Ancien Mot de passe</label>
+                        <input type="password" name="ancien" id="ancien"
+        class="form-control">
+                        </div>     
+                             
+<div class="col-sm-4 col-md-6 col-lg-4">
+<label>Date ajout </label>
+<input readonly type="text" name="dateAjout" value="{{ u.date_joined | date:"j/M/Y" }}" class="form-control">
+</div>
+
+</div><div class="col-sm-4 col-md-6 col-lg-4">
+<br><input type="submit" value="Modifier" class="btn btn-success">
+</div>
+</form>
+</center>
+</body>
+</html>

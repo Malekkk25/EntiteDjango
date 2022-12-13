@@ -1,0 +1,47 @@
+{% load static %}
+<html>
+<head>
+<title>Modification d'un article</title>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+ </head>
+<body>
+{% include "navBar.html" %}
+<h1><center>Modifier un Vol</center></h1>
+<center>
+<form action="update_vol_action/{{ v.id }}" method="post">
+{% csrf_token %}
+
+
+<div class="col-sm-4 col-md-6 col-lg-4">
+<label>Compagnie</label>
+<input  name="compagnie" value="{{ v.compagnie }}" 
+class="form-control">
+</div>
+<div class="col-sm-4 col-md-6 col-lg-4">
+<label>Date de Départ </label>
+<input readonly type="text" name="dateDepart" value="{{ v.dateDepart | date:"j/M/Y" }}" class="form-control">
+</div>
+<div class="col-sm-4 col-md-6 col-lg-4">
+    <label>Prix Ticket</label>
+    <input name="prixTicket" value="{{ v.prixTicket |floatformat:3 }}" class="form-control">
+    </div>
+<div class="col-sm-4 col-md-6 col-lg-4">
+<label>Destination </label>
+<input name="destination" value="{{ v.destination  }}" class="form-control">
+</div>
+<div class="col-sm-4 col-md-6 col-lg-4">
+<label>Aéroport </label>
+<select name="air" class="form-control form-control-lg">
+<option value="{{v.air.id}}" selected>{{v.air.nomAir}}</option>
+{% for a in air %}
+<option value="{{a.id}}" >{{a.nomAir}}</option>
+{% endfor %}
+</select> 
+</div><div class="col-sm-4 col-md-6 col-lg-4">
+<br><input type="submit" value="Modifier" class="btn btn-success">
+</div>
+</form>
+</center>
+</body>
+</html>

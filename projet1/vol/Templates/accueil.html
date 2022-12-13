@@ -1,0 +1,71 @@
+<html>
+    {% load static %}
+    <head>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        
+        </head>
+<body>
+    <!--Navbar-->
+{% include "navBar.html" %}
+<!--Fin Navbar-->
+<br>
+<div class="container">
+    <div class="card mb-6">
+    <div class="card-body">
+ <h1>Liste des vols</h1>
+
+ <p align="right">
+<a href="add_vol/" class="btn btn-primary">Ajouter un Vol</a>
+</p>
+ <table border="1">
+ <thead>
+ <tr>
+ <td>numero vol</td>
+ <td>Destination</td>
+ <td>Compagnie</td>
+ <td>Prix Ticket</td>
+ <td>Date de depart</td>
+ <td>Aeroport</td>
+ <td>Approvisionner</td>
+ <td>Modifier</td>
+ <td>Supprimer</td>
+ </tr>
+ </thead>
+ <tbody>
+ {% for a in v reversed %}
+ 
+ 
+ <tr>
+ <td>{{ a.numVol }}</td>
+ <td>{{ a.destination }}</td>
+ <td>{{ a.compagnie }}</td>
+ <td>{{ a.prixTicket | floatformat:3 }}</td>
+ <td>{{ a.dateDepart | date:"j/M/Y"}}</td>
+
+ <td>{{ c.nomAir}}</td>
+ 
+ 
+ {% if a.prixTicket < 2000 %}
+<td>
+pas cher
+</td>
+{% else %}
+<td>
+ trop cher  
+</td>
+ {% endif %}
+<td><a href="update_vol/{{ a.id }}"><img height="32" width="32" src="{% static 'img/edit.png' %}"></a></td>  
+ <td><a href="del_vol/{{ a.id }}"> <img height="32" width="32" src="{% static 'img/delete.jfif' %}"></a></td>
+ </tr>
+ 
+ 
+ {% endfor %}
+
+ </tbody> 
+ </table>
+    </div>
+    </div>
+</div>
+</body>
+</html>

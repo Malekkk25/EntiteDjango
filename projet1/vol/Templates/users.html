@@ -1,0 +1,59 @@
+{% load static %}
+<html>
+<head>
+<title>Liste des comptes utilisateurs</title>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+{% include "navBar.html" %}
+<br>
+<div class="container">
+<div class="card mb-6"> 
+<div class="card-body"> 
+<h1>Liste des comptes utilisateurs</h1><br>
+<p align="right">
+<a href="create_user/" class="btn btn-primary">Ajouter un utilisateur</a>
+</p>
+<table>
+<thead>
+<tr>
+<td><b>ID</b></td>
+<td><b>Prénom</b></td>
+<td><b>Nom</b></td>
+<td><b>Email</b></td>
+<td><b>Login</b></td>
+<td><b>Admin</b></td>
+<td><b>Date ajout</b></td>
+<td> Modifier</td>
+<td><b>Supprimer</b></td>
+</tr></b>
+</thead>
+<tbody>
+{% for u in users %}
+<tr>
+<td>{{u.id}}</td>
+<td>{{u.first_name}}</td>
+<td>{{u.last_name}}</td>
+<td>{{u.email}}</td>
+<td>{{u.username}}</td>
+<td>{{u.is_staff}}</td>
+<td>{{u.date_joined}}</td>
+<td>
+
+
+<a href="update_user/{{ u.id }}"><img height="32" width="32" src="{% static 'img/edit.png' %}"></a></td>
+<td>
+<a href="del_user/{{ u.id }}" class="btn btn-error" onclick="return confirm('Etes-vous sure de vouloir supprimer cet utilisateur?')">
+<img height="32" width="32" src="{% static 'img/delete.jfif' %}">
+</a>
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</body>
+</html>

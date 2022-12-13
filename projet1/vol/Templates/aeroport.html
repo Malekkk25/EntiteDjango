@@ -1,0 +1,42 @@
+<html>
+    {% load static %}
+    <head>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        </head>
+        <body>
+             <!--Navbar-->
+{% include "navBar.html" %}
+<!--Fin Navbar--> 
+<br>
+<div class="container">
+    <div class="card mb-6">
+    <div class="card-body">
+            <h1>Liste des Aéroports</h1>
+            <table border="1">
+            <thead>
+            <tr>    
+            <td>ID</td>
+            <td>Aéroport </td>
+            <td> Description</td>
+            <td>Supprimer</td>
+            </tr>
+            <tr>
+            {% for a in air reversed %}
+            <td>{{a.id}}</td>
+            <td>{{a.nomAir}}</td>
+            <td>{{a.description}}</td>
+            <td><a href="del_air/{{ a.id }}"> <img height="32" width="32" src="{% static 'img/delete.jfif' %}">  </a></td>
+            </tr>
+            {% endfor %}
+        </thead>
+        <tbody>   
+           
+
+ </tbody> 
+ </table>
+    </div>
+    </div>
+</div>
+</body>
+</html> 
